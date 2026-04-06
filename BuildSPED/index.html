@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard SPED Fiscal</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <aside class="sidebar">
+            <div class="logo">
+                <i class="fa-solid fa-chart-pie"></i>
+                <h2>Build<span>SPED</span></h2>
+            </div>
+            <nav class="menu">
+                <button id="btn-dashboard" class="active"><i class="fa-solid fa-house"></i> Dashboard Geral</button>
+                <button id="btn-importar"><i class="fa-solid fa-file-import"></i> Importar Arquivo</button>
+                <button id="btn-analise"><i class="fa-solid fa-magnifying-glass-chart"></i> Análise de Tributos</button>
+                <button id="btn-auditoria"><i class="fa-solid fa-triangle-exclamation"></i> Auditoria e Erros</button>
+                <button id="btn-cadastrar-empresa"><i class="fa-solid fa-file-invoice-dollar"></i> Cadastrar Empresas</button>
+                <button id="btn-configuracoes"><i class="fa-solid fa-gear"></i> Configurações</button>
+            </nav>
+        </aside>
+        <main class="main-content">
+            <header class="topbar">
+                <div class="search-bar">
+                    <i class="fa-solid fa-search"></i>
+                    <input type="text" placeholder="Buscar por CNPJ, IE, ou Empresa...">
+                </div>
+                <div class="user-profile">
+                    <div class="notifications">
+                        <i class="fa-regular fa-bell"></i>
+                        <span class="badge">2</span>
+                    </div>
+                    <div class="avatar">
+                        <img src="https://ui-avatars.com/api/?name=Usuario+Contador&background=0D8ABC&color=fff" alt="Usuário">
+                    </div>
+                </div>
+            </header>
+
+            <div id="view-dashboard" class="view-section active">
+                <div class="page-header">
+                    <h1>Controle de Apuração ICMS</h1>
+                    <div class="filter-bar">
+                        <label for="periodo-filtro"><i class="fa-regular fa-calendar"></i> Competência:</label>
+                        <input type="month" id="periodo-filtro" value="2026-03">
+                        <button class="btn-primary"><i class="fa-solid fa-filter"></i> Filtrar</button>
+                    </div>
+                </div>
+
+                <section class="kpi-cards">
+                    <div class="card">
+                        <div class="card-icon blue"><i class="fa-solid fa-file-arrow-down"></i></div>
+                        <div class="card-info">
+                            <h3>Empresas</h3>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon red"><i class="fa-solid fa-file-circle-xmark"></i></div>
+                        <div class="card-info">
+                            <h3>Não Recebidos</h3>
+                            <p class="text-danger">0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon yellow"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                        <div class="card-info">
+                            <h3>Pendentes (Em Análise)</h3>
+                            <p>0</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-icon green"><i class="fa-solid fa-check-double"></i></div>
+                        <div class="card-info">
+                            <h3>Concluídos</h3>
+                            <p>0</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="data-table-section">
+                    <h3>Total arquivos</h3>
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Empresa / Filial</th>
+                                    <th>CNPJ</th>
+                                    <th>Arquivo</th>
+                                    <th>Data Recebimento</th>
+                                    <th>Status Atual</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </section>
+            </div>
+            <div id="view-importar" class="view-section">
+                <div class="page-header">
+                    <h1>Importação de Arquivo SPED</h1>
+                </div>
+                <div class="card" style="min-height: 300px; display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px dashed #cbd5e1;">
+                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 48px; color: #94a3b8; margin-bottom: 15px;"></i>
+                    <h3 style="color: #475569;">Arraste e solte o arquivo .TXT aqui</h3>
+                    <p style="color: #64748b; margin-top: 5px;">Ou clique para selecionar no seu computador</p>
+                    <button class="btn-primary" style="margin-top: 20px;">Procurar Arquivo</button>
+                </div>
+                <div class="card">
+
+                </div>
+            </div>
+
+            <div id="view-analise" class="view-section">
+                <div class="page-header">
+                    <h1>Análise e Auditoria de Erros</h1>
+                </div>
+                <p>Conteúdo da análise de tributos entrará aqui...</p>
+            </div>
+            <div id="view-cadastrar-empresa" class="view-section">
+                <div class="page-header">
+                    <h1>Cadastro de Empresa / Filial</h1>
+                    <button class="btn-primary" id="salvar_empresa"><i class="fa-solid fa-check"></i> Salvar Cadastro</button>
+                </div>
+
+                <div class="card" style="margin-bottom: 30px;">
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Dados Principais</h3>
+
+                    <form style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+
+                        <div style="grid-column: span 2; display: flex; gap: 20px;">
+                            <div style="width: 120px;">
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Código</label>
+                                <input type="text" placeholder="Ex: 001" id="codigo_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Razão Social</label>
+                                <input type="text" placeholder="Ex: Supermercado Silva LTDA" id="nome_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">CNPJ</label>
+                            <input type="text" placeholder="00.000.000/0000-00" id="cnpj_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Inscrição Estadual (IE)</label>
+                            <input type="text" placeholder="Número da IE" id="ie_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Regime Tributário</label>
+                            <select id="regime_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                                <option value="">Selecione...</option>
+                                <option value="Simples Nacional">Simples Nacional</option>
+                                <option value="Lucro Presumido">Lucro Presumido</option>
+                                <option value="Lucro Real">Lucro Real</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">UF</label>
+                            <select id="uf_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                                <option value="">Selecione...</option>
+                                <option value="AC">Acre (AC)</option>
+                                <option value="AL">Alagoas (AL)</option>
+                                <option value="AP">Amapá (AP)</option>
+                                <option value="AM">Amazonas (AM)</option>
+                                <option value="BA">Bahia (BA)</option>
+                                <option value="CE">Ceará (CE)</option>
+                                <option value="DF">Distrito Federal (DF)</option>
+                                <option value="ES">Espírito Santo (ES)</option>
+                                <option value="GO">Goiás (GO)</option>
+                                <option value="MA">Maranhão (MA)</option>
+                                <option value="MT">Mato Grosso (MT)</option>
+                                <option value="MS">Mato Grosso do Sul (MS)</option>
+                                <option value="MG">Minas Gerais (MG)</option>
+                                <option value="PA">Pará (PA)</option>
+                                <option value="PB">Paraíba (PB)</option>
+                                <option value="PR">Paraná (PR)</option>
+                                <option value="PE">Pernambuco (PE)</option>
+                                <option value="PI">Piauí (PI)</option>
+                                <option value="RJ">Rio de Janeiro (RJ)</option>
+                                <option value="RN">Rio Grande do Norte (RN)</option>
+                                <option value="RS">Rio Grande do Sul (RS)</option>
+                                <option value="RO">Rondônia (RO)</option>
+                                <option value="RR">Roraima (RR)</option>
+                                <option value="SC">Santa Catarina (SC)</option>
+                                <option value="SP">São Paulo (SP)</option>
+                                <option value="SE">Sergipe (SE)</option>
+                                <option value="TO">Tocantins (TO)</option>
+                                <option value="EX">Exterior (EX)</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Código do Município (IBGE)</label>
+                            <input type="text" placeholder="Ex: 2910727" id="mun_empresa" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+
+                    </form>
+                </div>
+
+                <div class="data-table-section">
+                    <h3>Empresas Cadastradas</h3>
+                    <div class="table-responsive">
+                        <table class="data-table" id="tabela_empresas">
+                            <thead>
+                                <tr>
+                                    <th>Código</th>
+                                    <th>Razão Social</th>
+                                    <th>CNPJ</th>
+                                    <th>IE</th>
+                                    <th>Regime</th>
+                                    <th>UF</th>
+                                    <th>Municipio</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div id="view-configuracoes" class="view-section" style="gap: 30px;">
+                <div class="page-header">
+                    <h1>Configurações do Sistema</h1>
+                    <button class="btn-primary" id="salvar_config"><i class="fa-solid fa-floppy-disk"></i> Salvar Configurações</button>
+                </div>
+
+                <div class="card" style="max-width: 900px;">
+                    <h3 style="margin-bottom: 20px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">
+                        <i class="fa-solid fa-database" style="color: var(--primary-color);"></i> Banco de Dados
+                    </h3>
+                    
+                    <form style="display: flex; flex-direction: column; gap: 15px;">
+                        
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Caminho do Banco</label>
+                            <input type="text" placeholder="Ex: C:\dados\banco.db ou localhost" id="caminho_banco" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Nome do Banco</label>
+                            <input type="text" placeholder="Ex: sped_banco" id="nome_banco" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+
+                        <div>
+                            <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Senha</label>
+                            <input type="password" placeholder="Digite a senha (se houver)" id="senha_banco" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

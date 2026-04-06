@@ -69,7 +69,7 @@ namespace BuildSPED.Services
         {
             string[] dados = Acesso();
             string pasta = Path.Combine(dados[0], "SPED");
-            pasta = Path.Combine(pasta, $"{codigo} - {cnpj}");
+            pasta = Path.Combine(pasta, cnpj);
             Directory.CreateDirectory(pasta);
         }
     }

@@ -93,5 +93,43 @@ namespace BuildSPED.Infraestrutura
                 }
             }
         }
+        public static async Task<bool> VerificarExiste(string nome, string cnpj, string ie, string uf, string mun)
+        {
+            try
+            {
+                ConexaoBD conexao = new ConexaoBD();
+
+                using (var conn = conexao.Conectar())
+                {
+                    conn.Open();
+                    string queryVerificar = @"SELECT COUNT(*) FROM empresas WHERE codigo = ? AND razao_social = ? AND cnpj = ? AND ie = ? AND uf = ? AND cod_mun = ?";
+
+                    using (var cmd = new OleDbCommand(queryVerificar, conn))
+                    {
+                        cmd.Parameters.AddWithValue("@Razao", nome);
+                        cmd.Parameters.AddWithValue("@CNPJ", cnpj);
+                        cmd.Parameters.AddWithValue("@IE", ie);
+                        cmd.Parameters.AddWithValue("@UF", uf);
+                        cmd.Parameters.AddWithValue("@CodMun", mun);
+
+                        int existe = (int)cmd.ExecuteScalar();
+
+                        if (existe == 0)
+                        {
+                            return false;
+                        }
+                        else
+                        {
+                            return true;
+                        }
+                    }
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Erro ao se conectar no banco de dados");
+                return false;
+            }
+        }
     }
 }

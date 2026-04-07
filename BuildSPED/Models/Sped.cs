@@ -10,14 +10,8 @@ namespace BuildSPED.Models
 {
     public class Sped
     {
-        public string Nome { get; private set; }
-        private string RazaoSocial, Cnpj, Ie, Periodo, DataImportacao, Status, Responsavel, Caminho, CodMun, Uf = null;
-
-        public Sped(string nome)
-        {
-            Nome = nome;
-        }
-        public async Task OpenSped()
+        private static string RazaoSocial, Cnpj, Ie, Periodo, DataImportacao, Status, Responsavel, Caminho, CodMun, Uf, Nome = null;
+        public static async Task OpenSped()
         {
             string arquivo = null;
             var t = new Thread(() =>
@@ -44,7 +38,7 @@ namespace BuildSPED.Models
                 LerSped(arquivo);
             }
         }
-        public async Task LerSped(string arquivo)
+        public static async Task LerSped(string arquivo)
         {
             string[] linhas = File.ReadAllLines(arquivo);
             foreach(string linha in linhas)
@@ -67,7 +61,7 @@ namespace BuildSPED.Models
                 }
             }
         }
-        public async Task<bool> PreencherDadosContribuinte(string[] campos)
+        public static async Task<bool> PreencherDadosContribuinte(string[] campos)
         {
             BancoTXT banco = new BancoTXT();
             RazaoSocial = campos[6].Trim();

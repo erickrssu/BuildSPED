@@ -54,9 +54,17 @@ document.addEventListener('DOMContentLoaded', () => {
         const tabela = document.querySelector('#tabela_empresas tbody');
         tabela.innerHTML = '';
         window.chrome.webview.postMessage({
-            action: "carregar_empresas"
+            action: 'carregar_empresas'
         });
     });
+});
+document.addEventListener('DOMContentLoaded', () => {
+    const importar = document.getElementById('importar_sped');
+    importar.addEventListener('click', function () {
+        window.chrome.webview.postMessage({
+            action: 'importar_sped'
+        })
+    })
 });
 function ReceberEmpresa(codigo, nome, cnpj, ie, regime, uf, municipio) {
     const tabela = document.querySelector('#tabela_empresas tbody');

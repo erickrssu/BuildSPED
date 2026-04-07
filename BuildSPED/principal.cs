@@ -59,6 +59,10 @@ namespace BuildSPED
                     case "carregar_empresas":
                         EmpresaRepository.ExibirEmpresas(exibir);
                         break;
+                    case "importar_sped":
+                        Sped.OpenSped();
+                        break;
+
                 }
             }
         }

@@ -106,16 +106,44 @@
                     <h1>Importação de Arquivo SPED</h1>
                 </div>
                 <div class="card" style="min-height: 300px; display: flex; justify-content: center; align-items: center; flex-direction: column; border: 2px dashed #cbd5e1;">
-                    <i class="fa-solid fa-cloud-arrow-up" style="font-size: 48px; color: #94a3b8; margin-bottom: 15px;"></i>
-                    <h3 style="color: #475569;">Arraste e solte o arquivo .TXT aqui</h3>
-                    <p style="color: #64748b; margin-top: 5px;">Ou clique para selecionar no seu computador</p>
-                    <button class="btn-primary" id="importar_sped" style="margin-top: 20px;">Procurar Arquivo</button>
+                    <div class="card-importar">
+                        <i class="fa-solid fa-cloud-arrow-up" style="font-size: 48px; color: #94a3b8; margin-bottom: 15px;"></i>
+                        <h3 style="color: #475569;">Arraste e solte o arquivo .TXT aqui</h3>
+                        <p style="color: #64748b; margin-top: 5px;">Ou clique para selecionar no seu computador</p>
+                        <button class="btn-primary" id="importar_sped" style="margin-top: 20px;">Procurar Arquivo</button>
+                    </div>
+                    <div class="card-info-sped-invisivel">
+                        <h3 style="margin-bottom: 20px; color: var(--text-primary); border-bottom: 1px solid var(--border-color); padding-bottom: 10px;">Dados Principais</h3>
+                        <form style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+                            <div style="grid-column: span 2; display: flex; gap: 20px;">
+                                <div style="flex: 1;">
+                                    <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Razão Social</label>
+                                    <input type="text" placeholder="Ex: Supermercado Silva LTDA" id="nome_sped" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                                </div>
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">CNPJ</label>
+                                <input type="text" placeholder="00.000.000/0000-00" id="cnpj_sped" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Inscrição Estadual (IE)</label>
+                                <input type="text" placeholder="Número da IE" id="ie_sped" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Código do Município (IBGE)</label>
+                                <input type="text" placeholder="Ex: 2910727" id="mun_sped" style="width: 100%; padding: 10px; border: 1px solid var(--border-color); border-radius: 6px; font-family: inherit;">
+                                
+                            </div>
+                            <div>
+                                <label style="display: block; margin-bottom: 5px; color: var(--text-secondary); font-size: 14px;">Confirme a importação</label>
+                                <button class="btn-primary" id="confirmar" style="margin-top: 20px;">Confirmar</button>
+                            </div>
+                        </form>
+                    </div>
                 </div>
                 <div class="card">
-
                 </div>
             </div>
-
             <div id="view-analise" class="view-section">
                 <div class="page-header">
                     <h1>Análise e Auditoria de Erros</h1>

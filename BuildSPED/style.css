@@ -208,7 +208,19 @@ body {
     align-items: center;
     gap: 20px;
 }
-
+.card-importar{
+    background-color: var(--white);
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: nowrap;
+    flex-direction: column;
+}
+.card-importar-invisivel, .card-info-sped-invisivel{
+    display: none;
+}
 .card-icon {
     width: 60px;
     height: 60px;

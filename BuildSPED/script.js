@@ -14,6 +14,7 @@ botoes.forEach(botao => {
         }
     });
 });
+
 document.addEventListener('DOMContentLoaded', () => {
     const salvar = document.getElementById('salvar_config');
     salvar.addEventListener('click', function () {
@@ -84,4 +85,18 @@ function ReceberEmpresa(codigo, nome, cnpj, ie, regime, uf, municipio) {
     linha.insertCell(4).textContent = regime;
     linha.insertCell(5).textContent = uf;
     linha.insertCell(6).textContent = municipio;
+}
+function DadosSped(nome, cnpj, ie, periodo, dataImportacao, municipio, uf){
+    const card_importar = document.querySelector('.card-importar')
+    const card_sped = document.querySelector('.card-info-sped-invisivel')
+    card_sped.classList.replace('card-info-sped-invisivel', 'card-info-sped')
+    card_importar.classList.replace('card-importar', 'card-importar-invisivel')
+
+    textNome = document.getElementById('nome_sped')
+    textCnpj = document.getElementById('cnpj_sped')
+    textIe = document.getElementById('ie_sped')
+    textMunicipio = document.getElementById('mun_sped')
+
+    textNome.value = nome
+    textCnpj.value = cnpj
 }

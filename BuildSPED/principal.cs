@@ -60,7 +60,12 @@ namespace BuildSPED
                         EmpresaRepository.ExibirEmpresas(exibir);
                         break;
                     case "importar_sped":
-                        Sped.OpenSped();
+                        if (await Sped.OpenSped())
+                        {
+                            await exibir.CoreWebView2.ExecuteScriptAsync($"DadosSped('{Sped.RazaoSocial}', '{Sped.Cnpj}', '{Sped.Ie}', '{Sped.Periodo}', '{Sped.DataImportacao}', '{Sped.CodMun}', '{Sped.Uf}')");
+                        }
+                        break;
+                    case "salvar_sped":
                         break;
 
                 }

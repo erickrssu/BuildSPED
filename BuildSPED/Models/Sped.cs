@@ -10,8 +10,8 @@ namespace BuildSPED.Models
 {
     public class Sped
     {
-        private static string RazaoSocial, Cnpj, Ie, Periodo, DataImportacao, Status, Responsavel, Caminho, CodMun, Uf, Nome = null;
-        public static async Task OpenSped()
+        public static string RazaoSocial, Cnpj, Ie, Periodo, DataImportacao, Status, Responsavel, Caminho, CodMun, Uf, Nome = null;
+        public static async Task<bool> OpenSped()
         {
             string arquivo = null;
             var t = new Thread(() =>
@@ -35,10 +35,14 @@ namespace BuildSPED.Models
 
             if (!string.IsNullOrEmpty(arquivo))
             {
-                LerSped(arquivo);
+                if(await LerSped(arquivo))
+                {
+                    return true;
+                }
             }
+            return false;
         }
-        public static async Task LerSped(string arquivo)
+        public static async Task<bool> LerSped(string arquivo)
         {
             string[] linhas = File.ReadAllLines(arquivo);
             foreach(string linha in linhas)
@@ -46,20 +50,17 @@ namespace BuildSPED.Models
                 string[] campos = linha.Split("|");
                 if (campos[1] == "0000")
                 {
-                    if (await PreencherDadosContribuinte(campos) == true)
+                    if (await PreencherDadosContribuinte(campos))
                     {
-                        if(await EmpresaRepository.VerificarExiste(Nome, Cnpj, Ie, Uf, CodMun) == true)
-                        {
-
-                        }
-                        else
+                        if(!await EmpresaRepository.VerificarExiste(Nome, Cnpj, Ie, Uf, CodMun))
                         {
                             MessageBox.Show("Empresa não identificada");
                         }
                     }
-                        return;
+                        return true;
                 }
             }
+            return false;
         }
         public static async Task<bool> PreencherDadosContribuinte(string[] campos)
         {
